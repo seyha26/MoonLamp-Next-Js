@@ -4,14 +4,14 @@ const Parallax = () => {
       <h1 className="text-4xl font-bold text-white uppercase text-center drop-shadow-2xl">
         SUBSCRIBE TO OUR NEWSLETTER
       </h1>
-      <div className="bg-white py-2 flex items-center justify-around border border-gray-200  rounded-[10px] mb-[49px] mt-10">
+      <div className="bg-white py-2 flex items-center justify-around border border-gray-200  rounded-[8px] mb-[49px] mt-10">
         <input
           className="outline-none ml-5 w-[200px] md:w-[400px]"
           type="email"
           placeholder="Enter your email..."
         />
         <div>
-          <button className="flex items-center mr-2 py-[10px] px-[26px] rounded-[80px] font-semibold md:text-lg text-white bg-primary whitespace-nowrap flex-1 w-fit">
+          <button className="flex items-center mr-2 py-[5px] px-[26px] rounded-[10px] font-semibold md:text-lg text-white bg-secondary whitespace-nowrap flex-1 w-fit">
             Subscribe
           </button>
         </div>

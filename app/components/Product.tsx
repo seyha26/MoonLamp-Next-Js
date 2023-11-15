@@ -16,6 +16,7 @@ import image3 from "@/public/images/productimage3.jpeg";
 import image4 from "@/public/images/productimage4.jpeg";
 import AddToWishlistButton from "./UI/AddToWishlistButton";
 import { ProductType } from "@/types/productType";
+import formatPrice from "@/utils/formaPrice";
 
 const Product = ({
   name,
@@ -27,6 +28,7 @@ const Product = ({
 }: ProductType) => {
   const [currentImg, setCurrentImg] = useState(0);
   const productData = { name, unit_amount, image, id, quantity, description };
+  const price = formatPrice(unit_amount as number);
 
   const productImages: StaticImageData[] = [image1, image2, image3, image4];
 
@@ -36,7 +38,7 @@ const Product = ({
   };
 
   return (
-    <section className="py-20">
+    <section className="py-20" id="shop">
       <div className="w-[89%] m-auto max-w[1400px] grid grid-cols-1 md:grid-cols-2 items-center gap-5">
         {/* LEFT SIDE */}
         <div className="flex gap-4 items-center">
@@ -86,15 +88,10 @@ const Product = ({
             <span>(5.0)</span>
           </div>
           <div className="mb-5">
-            <span className="text-2xl mr-3 font-bold">$29.99</span>
+            <span className="text-2xl mr-3 font-bold">{price}</span>
             <span className="text-gray-400 line-through">$49.99</span>
           </div>
-          <p className="mb-5">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est
-            repudiandae pariatur fugiat recusandae expedita perferendis cumque.
-            Qui, nesciunt magnam consequuntur animi voluptatum, labore, magni
-            natus iusto laudantium rem laborum ea?
-          </p>
+          <p className="mb-5">{description}</p>
           <div className="flex items-center gap-5 justify-center">
             <AddToCartButton {...productData} />
             <AddToWishlistButton />

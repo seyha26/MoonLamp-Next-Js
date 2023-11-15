@@ -31,9 +31,9 @@ const Cart = () => {
             />
             <h1 className="font-medium ">{product.name}</h1>
             <div className="flex gap-2 justify-center items-center bg-black/10 px-2 rounded-sm">
-              <DecrementButton />
+              <DecrementButton product={product} />
               <h2>{product.quantity}</h2>
-              <IncrementButton />
+              <IncrementButton product={product} />
             </div>
           </div>
         ))}

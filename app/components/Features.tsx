@@ -1,9 +1,13 @@
 import Image from "next/image";
 import moonlamp from "@/public/images/transparentmoonlamp.png";
 import { BsBatteryCharging } from "react-icons/bs";
+import { IoIosColorPalette } from "react-icons/io";
+import { AiFillGift, AiFillSafetyCertificate } from "react-icons/ai";
+import { RiWirelessChargingFill } from "react-icons/ri";
+import { FaRegLightbulb } from "react-icons/fa";
 const Features = () => {
   return (
-    <section className="py-5">
+    <section className="py-5" id="features">
       <div className="w-[89%] m-auto max-w-[1400px] grid md:grid-cols-3 grid-cols-1 items-center justify-center gap-5">
         <div>
           <ul className="space-y-10">
@@ -11,39 +15,36 @@ const Features = () => {
               <div className="flex gap-2 items-center text-xl font-bold text-dark">
                 <h3>Battery life</h3>
                 <div>
-                  <BsBatteryCharging />
+                  <BsBatteryCharging size={25} />
                 </div>
               </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                officia maxime fugiat incidunt harum aut nisi ipsam, laboriosam
-                numquam esse repellat vitae voluptatem asperiores modi.
+                Crafted with precision, our moonlamp radiates soft, ambient
+                light and lasts for hours on a single charge.
               </p>
             </li>
             <li>
               <div className="flex gap-2 items-center text-xl font-bold text-dark">
-                <h3>Battery life</h3>
+                <h3>16 Color Variations</h3>
                 <div>
-                  <BsBatteryCharging />
+                  <IoIosColorPalette size={25} />
                 </div>
               </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                officia maxime fugiat incidunt harum aut nisi ipsam, laboriosam
-                numquam esse repellat vitae voluptatem asperiores modi.
+                Explore a palette of moods with our moonlamp, offering sixteen
+                hues to match any accasion or decor.
               </p>
             </li>
             <li>
               <div className="flex gap-2 items-center text-xl font-bold text-dark">
-                <h3>Battery life</h3>
+                <h3>Perfect Gift</h3>
                 <div>
-                  <BsBatteryCharging />
+                  <AiFillGift size={25} />
                 </div>
               </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                officia maxime fugiat incidunt harum aut nisi ipsam, laboriosam
-                numquam esse repellat vitae voluptatem asperiores modi.
+                A unique and thoughtful token, our moonlamp lights up moments
+                and smiles, making memories brighter.
               </p>
             </li>
           </ul>
@@ -55,41 +56,38 @@ const Features = () => {
           <ul className="space-y-10 text-right">
             <li>
               <div className="flex gap-2 items-center text-xl font-bold text-dark justify-end">
-                <h3>Battery life</h3>
+                <h3>Child Safety</h3>
                 <div>
-                  <BsBatteryCharging />
+                  <AiFillSafetyCertificate size={25} />
                 </div>
               </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                officia maxime fugiat incidunt harum aut nisi ipsam, laboriosam
-                numquam esse repellat vitae voluptatem asperiores modi.
+                Designed with car, our moonlamp ensures a gentle glow free of
+                harmful elements, keeping young ones enchanted and secure.
               </p>
             </li>
             <li>
               <div className="flex gap-2 items-center text-xl font-bold text-dark justify-end">
-                <h3>Battery life</h3>
+                <h3>Bright & Dim Modes</h3>
                 <div>
-                  <BsBatteryCharging />
+                  <FaRegLightbulb />
                 </div>
               </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                officia maxime fugiat incidunt harum aut nisi ipsam, laboriosam
-                numquam esse repellat vitae voluptatem asperiores modi.
+                Choose the ambiance; our moonlamp adjusts from a radiant glow to
+                a soft whisper of light.
               </p>
             </li>
             <li>
               <div className="flex gap-2 items-center text-xl font-bold text-dark justify-end">
-                <h3>Battery life</h3>
+                <h3>100% Wireless</h3>
                 <div>
-                  <BsBatteryCharging />
+                  <RiWirelessChargingFill size={25} />
                 </div>
               </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                officia maxime fugiat incidunt harum aut nisi ipsam, laboriosam
-                numquam esse repellat vitae voluptatem asperiores modi.
+                Illuminate spaces without cords; our moonlamp is sleek and
+                clutter-free.
               </p>
             </li>
           </ul>
