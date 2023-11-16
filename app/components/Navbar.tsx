@@ -98,7 +98,9 @@ const Navbar = () => {
         <div className="flex gap-4 items-center text-dark ml-auto md:ml-0">
           <div
             className="cursor-pointer relative"
-            onClick={() => cartStore.toggleCart()}
+            onClick={() => {
+              cartStore.toggleCart();
+            }}
           >
             <AiOutlineShoppingCart size="25" />
             {cartStore.cart.length > 0 && (
