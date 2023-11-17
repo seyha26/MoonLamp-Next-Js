@@ -5,7 +5,7 @@ import { authMiddleware } from "@clerk/nextjs";
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
   ignoredRoutes: ["/((?!api|trpc))(_next|.+..+)(.*)"],
-  publicRoutes: ["/api/create-payment-intent"],
+  publicRoutes: ["/api/create-payment-intent", "/"],
 });
 
 export const config = {

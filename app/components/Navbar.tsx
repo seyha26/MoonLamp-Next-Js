@@ -5,6 +5,8 @@ import Image from "next/image";
 import Cart from "./Cart";
 import Link from "next/link";
 import { useCartStore } from "@/store/useCartStore";
+import { useWishlistStore } from "@/store/useWishlistStore";
+import { useRouter } from "next/navigation";
 
 // ICONS
 import { FiMenu } from "react-icons/fi";
@@ -20,14 +22,17 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
 } from "react-icons/ai";
+import WishList from "./Wishlist";
 
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const wishListStore = useWishlistStore();
   const mobileMenuHanlder = () => {
     setOpenMobileMenu(!openMobileMenu);
   };
   const cartStore = useCartStore();
+  const router = useRouter();
 
   const { isSignedIn, user } = useUser();
 
@@ -59,7 +64,7 @@ const Navbar = () => {
       }`}
     >
       <div className="w-[89%] mx-auto flex justify-between  items-center max-w-[1400px]">
-        <div>
+        <div onClick={() => router.push("/")}>
           <Image src={logo} width={150} height={150} alt="logo" />
         </div>
         <ul
@@ -70,22 +75,22 @@ const Navbar = () => {
           }`}
         >
           <li>
-            <Link onClick={() => setOpenMobileMenu(false)} href="#shop">
+            <Link onClick={() => setOpenMobileMenu(false)} href="/#shop">
               Shop
             </Link>
           </li>
           <li>
-            <Link onClick={() => setOpenMobileMenu(false)} href="#features">
+            <Link onClick={() => setOpenMobileMenu(false)} href="/#features">
               Features
             </Link>
           </li>
           <li>
-            <Link onClick={() => setOpenMobileMenu(false)} href="#faq">
+            <Link onClick={() => setOpenMobileMenu(false)} href="/#faq">
               FAQ
             </Link>
           </li>
           <li>
-            <Link onClick={() => setOpenMobileMenu(false)} href="#contact">
+            <Link onClick={() => setOpenMobileMenu(false)} href="/#contact">
               Contact
             </Link>
           </li>
@@ -109,7 +114,7 @@ const Navbar = () => {
               </span>
             )}
           </div>
-          <div>
+          <div onClick={() => wishListStore.toggleWishList()}>
             <AiOutlineHeart size="25" />
           </div>
           {!isSignedIn ? (
@@ -125,6 +130,7 @@ const Navbar = () => {
         </div>
       </div>
       {cartStore.isOpen && <Cart />}
+      {wishListStore.openWishlist && <WishList />}
     </nav>
   );
 };

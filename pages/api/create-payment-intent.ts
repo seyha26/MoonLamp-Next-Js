@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const calculateOrderAmount = (items: CartType[]) => {
   return items.reduce(
-    (acc, item) => acc + (item.unit_amount! * item.quantity!),
+    (acc, item) => acc + item.unit_amount! * item.quantity!,
     0
   );
 };
@@ -92,28 +92,22 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { items, payment_intent_id, userId } = req.body;
-  console.log(req.body)
-//   console.log("userId: ", userId);
+  // console.log(req.body);
+  //   console.log("userId: ", userId);
 
   const total = calculateOrderAmount(items);
-  console.log(total)
+  // console.log(total);
 
   try {
-    const paymentIntent =
-     await manageStripePaymentIntent(
+    const paymentIntent = await manageStripePaymentIntent(
       payment_intent_id,
       total
     );
-    const order = await manageOrderInDB(
-      paymentIntent,
-      userId,
-      total,
-      items
-    );
+    const order = await manageOrderInDB(paymentIntent, userId, total, items);
 
     return res.status(200).json({ paymentIntent, order });
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return res.status(500).json({ message: "Error", error });
   }
 }

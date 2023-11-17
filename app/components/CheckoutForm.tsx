@@ -1,6 +1,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import { PaymentElement, useStripe,  useElements } from "@stripe/react-stripe-js";
 import { useCartStore } from "@/store/useCartStore";
+import formatPrice from "@/utils/formaPrice";
 
 const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
   const stripe = useStripe();
@@ -14,7 +15,7 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
     return acc + item.unit_amount! * item.quantity!;
   }, 0);
 
-  const formattedPrice = totalPrice;
+  const formattedPrice = formatPrice(totalPrice);
 
   useEffect(() => {
     if (!stripe) {
@@ -26,17 +27,17 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
   }, [stripe]);
 
   useEffect(() => {
-    // async function fetchLatestOrderId() {
-    //   try {
-    //     const response = await fetch("/api/get-latest-order-id");
-    //     const data = await response.json();
-    //     setOrderId(data.orderId);
-    //   } catch (error) {
-    //     console.error("Error fetching the latest order ID:", error);
-    //   }
-    // }
+    async function fetchLatestOrderId() {
+      try {
+        const response = await fetch("/api/get-latest-order-id");
+        const data = await response.json();
+        setOrderId(data.orderId);
+      } catch (error) {
+        console.error("Error fetching the latest order ID:", error);
+      }
+    }
 
-    // fetchLatestOrderId();
+    fetchLatestOrderId();
   }, []);
 
   const handleSubmit = (e: FormEvent) => {
@@ -47,27 +48,29 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
     stripe.confirmPayment({
       elements, 
       redirect: 'if_required'
-    }).then(result =>{ if (result.error) {
+    }).then(result => { if (!result.error) {
       cartStore.setCheckout("success")
-          
-      fetch("/api/update-order-status", {
+      fetch ("/api/update-order-status", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           orderId: orderId,
-          status: "payment successful",
+          status: "payment successful"
         })
-    })
-    setIsLoading(false)
+      })
+      setIsLoading(false)
+    }})
+    
+    
   }
   return <form className="text-gray-600 " id="payment-form" onSubmit={handleSubmit}>
     <PaymentElement id="payment-element" options={{
       layout: "tabs"
     }}  />
     <h1 className="py-4 text-sm font-bold">Total: {formattedPrice}</h1>
-    <button className={`py-2 mt-4 w-full bg-primary round-md text-white disable:opacity-25 `} id="submit" type="submit" disabled={isLoading || !stripe || !elements}>{isLoading? "Processing..." : "Pay Now"}</button>
+    <button className={`py-2 mt-4 w-full bg-primary round-md text-white disabled:opacity-25 `} id="submit" type="submit" disabled={isLoading || !stripe || !elements}>{isLoading? "Processing..." : "Pay Now"}</button>
   </form>;
 };
 

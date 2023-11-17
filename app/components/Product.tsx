@@ -94,7 +94,7 @@ const Product = ({
           <p className="mb-5">{description}</p>
           <div className="flex items-center gap-5 justify-center">
             <AddToCartButton {...productData} />
-            <AddToWishlistButton />
+            <AddToWishlistButton {...productData} />
           </div>
         </div>
       </div>
