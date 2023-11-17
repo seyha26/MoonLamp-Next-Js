@@ -12,37 +12,40 @@ const OrdersPage = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    if (user && user.id) {
-      fetch("/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-        }),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Network response was not okay");
-          }
+    const fetchData = async function () {
+      if (user && user.id) {
+        await fetch("/api/orders", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.id,
+          }),
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Network response was not okay");
+            }
 
-          return res.json();
-        })
-        .then((data) => {
-          if (Array.isArray(data)) {
-            setOrders(data);
-          } else {
-            console.error(
-              "Data received from the server is not an array:",
-              data
-            );
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
+            return res.json();
+          })
+          .then((data) => {
+            if (Array.isArray(data)) {
+              setOrders(data);
+            } else {
+              console.error(
+                "Data received from the server is not an array:",
+                data
+              );
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    };
+    fetchData();
   }, [user]);
 
   if (!user) {
