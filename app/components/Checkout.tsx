@@ -22,6 +22,7 @@ const Checkout = () => {
       labels: "floating",
     },
   };
+  const cartStore = useCartStore();
 
   useEffect(() => {
     const createPaymentIntent = async () => {
@@ -57,8 +58,8 @@ const Checkout = () => {
       }
     };
     createPaymentIntent();
-  }, [user]);
-  const cartStore = useCartStore();
+  }, [user, router, cartStore]);
+
   return (
     <>
       <button

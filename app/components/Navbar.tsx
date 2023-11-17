@@ -55,7 +55,7 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [window.scrollY, isScrolling]);
+  }, [isScrolling]);
 
   return (
     <nav

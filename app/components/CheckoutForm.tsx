@@ -28,7 +28,7 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
     if (!clientSecret) {
       return;
     }
-  }, [stripe]);
+  }, [stripe, clientSecret]);
 
   useEffect(() => {
     async function fetchLatestOrderId() {

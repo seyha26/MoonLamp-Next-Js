@@ -9,7 +9,7 @@ const OrderSuccess = () => {
   useEffect(() => {
     cartStore.setPaymentIntent("");
     cartStore.clearCart();
-  }, []);
+  }, [cartStore]);
 
   return (
     <>
